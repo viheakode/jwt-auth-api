@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -50,13 +51,9 @@ public class GlobalExceptionHandler{
         return response;
     }
 
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<Object> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request){
-//        return ApiResponseStructure.responseError("Bad Request", ex.getMessage(), request.getRequestURI(), HttpStatus.BAD_REQUEST);
-//    }
-
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<Object> handleNotFound(NoHandlerFoundException ex, HttpServletRequest request){
         return ApiResponseStructure.responseError("Not Found", "URL not found", request.getRequestURI(), HttpStatus.NOT_FOUND);
     }
+
 }

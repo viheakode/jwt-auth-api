@@ -92,7 +92,7 @@ public class RoleServiceImp implements IRoleService {
     }
 
     @Override
-    @PreAuthorize("hasAuthority('UPDATE_ROLE')")
+    @PreAuthorize("hasAuthority('MODIFY_ROLE')")
     public RoleDto assignPermissionToRole(Long roleId, AssignPermissionToRoleRequest request) {
         Role role = roleRepository.findById(roleId)
                 .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
@@ -115,6 +115,7 @@ public class RoleServiceImp implements IRoleService {
     }
 
     @Override
+    @PreAuthorize("hasAuthority('MODIFY_ROLE')")
     public RoleDto removePermissionFromRole(Long roleId, RemovePermissionFromRoleRequest request) {
         Role role = roleRepository.findById(roleId)
                 .orElseThrow(() -> new ResourceNotFoundException("Role not found"));

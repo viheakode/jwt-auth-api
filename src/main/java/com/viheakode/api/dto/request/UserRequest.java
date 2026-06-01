@@ -11,4 +11,10 @@ public class UserRequest {
     private String email;
     @NotBlank(message = "Password field is required")
     private String password;
+
+    public UserRequest(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 }

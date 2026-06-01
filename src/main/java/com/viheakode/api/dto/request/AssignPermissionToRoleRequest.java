@@ -7,4 +7,8 @@ import lombok.Data;
 public class AssignPermissionToRoleRequest {
     @NotNull(message = "The permissionId is required")
     private Long permissionId;
+
+    public AssignPermissionToRoleRequest(Long permissionId) {
+        this.permissionId = permissionId;
+    }
 }

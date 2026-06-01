@@ -116,7 +116,7 @@ public class UserServiceImp implements IUserService {
     }
 
     @Override
-    @PreAuthorize("hasAuthority('UPDATE_USER')")
+    @PreAuthorize("hasAuthority('MODIFY_USER')")
     public UserDto assignRoleToUser(Long userId, AssignRoleToUserRequest request) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
@@ -139,7 +139,7 @@ public class UserServiceImp implements IUserService {
     }
 
     @Override
-    @PreAuthorize("hasAuthority('UPDATE_USER')")
+    @PreAuthorize("hasAuthority('MODIFY_USER')")
     public UserDto removeRoleFromUser(Long userId, RemoveRoleFromUserRequest request) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));

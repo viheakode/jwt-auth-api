@@ -46,6 +46,6 @@ public class PermissionController {
     @DeleteMapping("/{permissionId}")
     public ResponseEntity<Object> delete(@PathVariable Long permissionId){
         PermissionDto permissionDto = permissionServiceImp.delete(permissionId);
-        return ApiResponseStructure.responseSuccess("deleted", permissionId, HttpStatus.OK);
+        return ApiResponseStructure.responseSuccess("deleted", permissionDto, HttpStatus.OK);
     }
 }
