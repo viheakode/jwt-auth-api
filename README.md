@@ -3,7 +3,7 @@
 ## Prerequisites
 
 * PostgreSQL installed and running
-* Java 17+ installed
+* Java 21 installed
 * Maven installed
 * Postman
 
