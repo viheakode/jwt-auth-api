@@ -56,4 +56,9 @@ public class GlobalExceptionHandler{
         return ApiResponseStructure.responseError("Not Found", "URL not found", request.getRequestURI(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<Object> handleBadCredential(BadCredentialsException ex, HttpServletRequest request){
+        return ApiResponseStructure.responseError("Bad Credential", ex.getMessage(), request.getRequestURI(), HttpStatus.BAD_REQUEST);
+    }
+
 }

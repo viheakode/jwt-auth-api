@@ -17,7 +17,7 @@ public class HomeController {
 
     @GetMapping
     public String home(){
-        return "App is running";
+        return "System is running";
     }
 
     @GetMapping("/user")

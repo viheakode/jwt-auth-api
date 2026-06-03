@@ -1,6 +1,7 @@
 package com.viheakode.api.service;
 
 import com.viheakode.api.dto.request.AssignRoleToUserRequest;
+import com.viheakode.api.dto.request.ChangePasswordRequest;
 import com.viheakode.api.dto.request.RemoveRoleFromUserRequest;
 import com.viheakode.api.dto.request.UserRequest;
 import com.viheakode.api.dto.response.UserDto;
@@ -13,6 +14,8 @@ public interface IUserService {
     List<UserDto> getAll();
     UserDto update(Long userId, UserRequest request);
     UserDto delete(Long userId);
+
+    UserDto changePassword(Long userId, ChangePasswordRequest request);
     UserDto assignRoleToUser(Long userId, AssignRoleToUserRequest request);
     UserDto removeRoleFromUser(Long userId, RemoveRoleFromUserRequest request);
 }

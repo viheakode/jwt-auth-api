@@ -1,9 +1,11 @@
 package com.viheakode.api.service.serviceImp;
 
 import com.viheakode.api.dto.request.AssignRoleToUserRequest;
+import com.viheakode.api.dto.request.ChangePasswordRequest;
 import com.viheakode.api.dto.request.RemoveRoleFromUserRequest;
 import com.viheakode.api.dto.request.UserRequest;
 import com.viheakode.api.dto.response.UserDto;
+import com.viheakode.api.exception.BadCredentialsException;
 import com.viheakode.api.exception.DuplicateException;
 import com.viheakode.api.exception.ResourceNotFoundException;
 import com.viheakode.api.mapper.UserMapper;
@@ -112,6 +114,21 @@ public class UserServiceImp implements IUserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         userRepository.delete(user);
+        return userMapper.toDto(user);
+    }
+
+    @Override
+    public UserDto changePassword(Long userId, ChangePasswordRequest request) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())){
+            throw new BadCredentialsException("Current password is incorrect");
+        }
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        user.setModifiedDate(new Date());
+        userRepository.save(user);
+
         return userMapper.toDto(user);
     }
 

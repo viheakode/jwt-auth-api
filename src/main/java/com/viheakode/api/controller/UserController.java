@@ -1,6 +1,7 @@
 package com.viheakode.api.controller;
 
 import com.viheakode.api.dto.request.AssignRoleToUserRequest;
+import com.viheakode.api.dto.request.ChangePasswordRequest;
 import com.viheakode.api.dto.request.RemoveRoleFromUserRequest;
 import com.viheakode.api.dto.request.UserRequest;
 import com.viheakode.api.dto.response.UserDto;
@@ -48,6 +49,12 @@ public class UserController {
     public ResponseEntity<Object> delete(@PathVariable Long userId){
         UserDto userDto = userServiceImp.delete(userId);
         return ApiResponseStructure.responseSuccess("Deleted", userDto, HttpStatus.OK);
+    }
+
+    @PutMapping("/{userId}/change-password")
+    public ResponseEntity<Object> changePassword(@PathVariable Long userId, @Valid @RequestBody ChangePasswordRequest request){
+        UserDto userDto = userServiceImp.changePassword(userId, request);
+        return ApiResponseStructure.responseSuccess("Your password has changed", userDto, HttpStatus.OK);
     }
 
     @PostMapping("/{userId}/roles")
