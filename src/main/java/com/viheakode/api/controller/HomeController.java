@@ -65,7 +65,7 @@ public class HomeController {
     ));
 
     private final List<UserRequest> userRequestList = new ArrayList<>(List.of(
-            new UserRequest("S.ADMIN", "s.admin@viheakode", "viheakode")
+            new UserRequest("VIHEAKODE", "viheakode787@gmail.com", "viheakode")
     ));
 
     private final List<AssignPermissionToRoleRequest> assignPermissionToRoleRequestList = new ArrayList<>(List.of(
