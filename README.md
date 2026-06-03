@@ -128,7 +128,7 @@ POST http://localhost:8080/api/v1/auth/authenticate
 
 ```json
 {
-  "username": "s.admin",
+  "username": "viheakode",
   "password": "viheakode"
 }
 ```
@@ -137,7 +137,7 @@ POST http://localhost:8080/api/v1/auth/authenticate
 
 ```json
 {
-  "accessToken": "<jwt_token>"
+  "token": "<jwt_token>"
 }
 ```
 
@@ -152,7 +152,7 @@ Authentication completed successfully. You can now use the returned JWT token to
 * Include the JWT token in the Authorization header for protected endpoints:
 
 ```http
-Authorization: Bearer <jwt_token>
+Authorization: viheakode <jwt_token>
 ```
 
   
