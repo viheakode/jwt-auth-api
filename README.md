@@ -64,6 +64,8 @@ Uncomment:
 
 ### Run the Project
 
+The application will automatically create the required database tables.
+
 After the application starts, open Postman and send:
 
 **Request**
@@ -77,10 +79,6 @@ GET http://localhost:8080/start
 ```text
 Project started.
 ```
-
-The application will automatically create the required database tables.
-
-### Insert Sample Data
 
 Execute the provided sample SQL script to insert initial data into the database.
 
