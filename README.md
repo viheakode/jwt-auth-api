@@ -1,30 +1,160 @@
-# jwt-auth-api
-Step 1
-1. Create database in PostgreSQL
-2. Past env viriable in project
-  SERVER_PORT=8080
-  PG_DB_URL=jdbc:postgresql://localhost:5432/[your database name]
-  PG_DB_USERNAME=[your database username]
-  PG_DB_PASSWORD=[your database password]
-  JWT_SECRET_KEY=[your scecret key]
-  JWT_EXPIRATION_TIME=86400000
-Step 2
-  1. Go to src\main\java\com\viheakode\api\config\SecurityConfig.java
-     disable line 21 //@EnableMethodSecurity
-     enable line 35 // .requestMatchers("/start").permitAll()
-  2. Run project 
-  3. in postman Method: GET URL: localhost:8080/start (esponse: Project started.nsert sample data into database)
-  4. Go to src\main\java\com\viheakode\api\config\SecurityConfig.java
-     enable line 21 //@EnableMethodSecurity
-     disable line 35 // .requestMatchers("/start").permitAll()
-Step 3
-  1. Restart proejct
-  2. in postman Method: Post URL: localhost:8080/api/v1/auth/autheticate
-  {
-      "username": "s.admin",
-      "password": "viheakode"
-  }
-  3. done
+# Project Setup Guide
+
+## Prerequisites
+
+* PostgreSQL installed and running
+* Java 17+ installed
+* Maven installed
+* Postman
+
+---
+
+## Step 1: Configure Database and Environment Variables
+
+### Create PostgreSQL Database
+
+Create a new PostgreSQL database.
+
+Example:
+
+```sql
+CREATE DATABASE jwt_auth_db;
+```
+
+### Configure Environment Variables
+
+Add the following environment variables to your project:
+
+```properties
+SERVER_PORT=8080
+
+PG_DB_URL=jdbc:postgresql://localhost:5432/<your_database_name>
+PG_DB_USERNAME=<your_database_username>
+PG_DB_PASSWORD=<your_database_password>
+
+JWT_SECRET_KEY=<your_secret_key>
+JWT_EXPIRATION_TIME=86400000
+```
+
+---
+
+## Step 2: Initialize Database
+
+Open:
+
+```text
+src/main/java/com/viheakode/api/config/SecurityConfig.java
+```
+
+### Disable Method Security
+
+Comment out:
+
+```java
+@EnableMethodSecurity
+```
+
+### Allow Public Access to Startup Endpoint
+
+Uncomment:
+
+```java
+.requestMatchers("/start").permitAll()
+```
+
+### Run the Project
+
+After the application starts, open Postman and send:
+
+**Request**
+
+```http
+GET http://localhost:8080/start
+```
+
+**Response**
+
+```text
+Project started.
+```
+
+The application will automatically create the required database tables.
+
+### Insert Sample Data
+
+Execute the provided sample SQL script to insert initial data into the database.
+
+---
+
+## Step 3: Enable Authentication
+
+Open:
+
+```text
+src/main/java/com/viheakode/api/config/SecurityConfig.java
+```
+
+### Enable Method Security
+
+Uncomment:
+
+```java
+@EnableMethodSecurity
+```
+
+### Secure the Startup Endpoint
+
+Comment out:
+
+```java
+.requestMatchers("/start").permitAll()
+```
+
+### Restart the Application
+
+---
+
+## Step 4: Authenticate
+
+Open Postman and send:
+
+**Request**
+
+```http
+POST http://localhost:8080/api/v1/auth/authenticate
+```
+
+**Body**
+
+```json
+{
+  "username": "s.admin",
+  "password": "viheakode"
+}
+```
+
+**Response**
+
+```json
+{
+  "accessToken": "<jwt_token>"
+}
+```
+
+Authentication completed successfully. You can now use the returned JWT token to access protected APIs.
+
+---
+
+## Notes
+
+* Replace all placeholder values with your actual database configuration.
+* Keep your JWT secret key secure.
+* Include the JWT token in the Authorization header for protected endpoints:
+
+```http
+Authorization: Bearer <jwt_token>
+```
+
   
 
   
